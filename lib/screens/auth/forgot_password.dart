@@ -13,6 +13,9 @@ class _ForgotPasswordState extends State<ForgotPasswordView> {
 
   String? emailError;
 
+  bool get disableButton =>
+      emailController.text.isEmpty || emailError != null;
+
   void onValidateEmail(String email) {
     RegExp regex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -101,7 +104,8 @@ class _ForgotPasswordState extends State<ForgotPasswordView> {
               SizedBox(
                 height: getProportionsScreenHeigth(120),
               ),
-              Button(label: 'Send', onPress: recoverPassword),
+              Button(label: 'Send', onPress: recoverPassword,
+              disable: disableButton),
               SizedBox(
                 height: getProportionsScreenHeigth(24),
               ),
